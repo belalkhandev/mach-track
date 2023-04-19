@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('package_service_package', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->foreignId('package_id')->constrained('packages')->cascadeOnDelete();
+            $table->foreignId('package_service_id')->constrained('package_services')->cascadeOnDelete();
         });
     }
 
