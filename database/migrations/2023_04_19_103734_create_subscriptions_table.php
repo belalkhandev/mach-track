@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
             $table->foreignId('package_category_package_id')->constrained('package_category_packages')->cascadeOnDelete();
-            $table->timestamps('state_date');
-            $table->timestamps('end_date');
+            $table->date('start_date');
+            $table->date('end_date');
             $table->enum('payment_status', config('enums.payment_statuses'))->default('pending');
             $table->boolean('is_auto_renewal')->default(false);
             $table->foreignId('original_subscription_id')->nullable()->constrained('subscriptions')->cascadeOnDelete();

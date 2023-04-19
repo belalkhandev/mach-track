@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
             $table->morphs('purchasable');
-            $table->enum('payment_gateway', config('payment_gateways'))->nullable();
+            $table->enum('payment_gateway', config('enums.payment_gateways'))->nullable();
             $table->string('payment_gateway_id')->nullable();
             $table->string('transaction_id')->nullable();
             $table->string('currency')->nullable();
