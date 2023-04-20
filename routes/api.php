@@ -14,6 +14,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/', function() {
+    return response()->json([
+        'service' => 'API',
+        "status" => "Ok",
+        "version" => "1.0.0",
+        "message" => "Hello! I am mc-track",
+    ]);
+});
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
