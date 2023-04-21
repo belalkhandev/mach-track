@@ -33,5 +33,17 @@
         'payment_gateways' => [
             'bkash',
             'ssl_commercz'
-        ]
+        ],
+
+        'machine_conditions' => [
+            'running',
+            'idle',
+            'repairable',
+            'disable',
+        ],
+
+        'transmission_types' => [
+            'auto',
+            'manual'
+        ],
     ];
