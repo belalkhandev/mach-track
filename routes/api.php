@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -19,10 +20,12 @@ Route::get('/', function() {
         'service' => 'API',
         "status" => "Ok",
         "version" => "1.0.0",
-        "message" => "Hello! I am mc-track",
+        "message" => "Hello! I am machine tracker",
     ]);
 });
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::group([
+    'prefix' => 'user',
+], function ($route) {
+    $route->post('login', [AuthController::class, 'login']);
 });
