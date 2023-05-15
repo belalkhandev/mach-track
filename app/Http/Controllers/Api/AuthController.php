@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\LoginRequest;
+use App\Http\Requests\RegisterRequest;
 use App\Repositories\User\UserRepository;
 use Illuminate\Http\JsonResponse;
 
@@ -22,5 +23,10 @@ class AuthController extends Controller
         return $data
             ? $this->json('Logged in successfully', $data)
             : $this->json('Failed to login! Invalid Credentials', null, 400);
+    }
+
+    public function register(RegisterRequest $request)
+    {
+        $user = $this->userRepository->register($request);
     }
 }

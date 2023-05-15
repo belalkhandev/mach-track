@@ -43,4 +43,9 @@ class UserRepository extends Repository
 
         return 'username';
     }
+
+    public function register($request)
+    {
+        
+    }
 }

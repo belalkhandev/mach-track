@@ -28,4 +28,5 @@ Route::group([
     'prefix' => 'user',
 ], function ($route) {
     $route->post('login', [AuthController::class, 'login']);
+    $route->post('register', [AuthController::class, 'register']);
 });
