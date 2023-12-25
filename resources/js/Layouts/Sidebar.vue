@@ -36,158 +36,40 @@ const toggleSidebar = () => {
             <div class="sidebar-item">
                 <div class="sidebar-item-header">
                         <span class="icon">
-                            <i class='bx bx-bus' ></i>
-                        </span>
-                    <h4>Transport Bill & Payment</h4>
-                </div>
-                <div class="sidebar-item-body">
-                    <ul>
-                        <li :class="{ 'active': $page.url === getActivePath(route('transport-bill.generate')) }">
-                            <NavLink :href="route('transport-bill.generate')">
-                                <i class='bx bx-radio-circle-marked' ></i>
-                                Generate Transport Fee
-                            </NavLink>
-                        </li>
-                        <li :class="{ 'active': $page.url === getActivePath(route('transport-bill.index')) }">
-                            <NavLink :href="route('transport-bill.index')">
-                                <i class='bx bx-radio-circle-marked' ></i>
-                                Transport bills
-                            </NavLink>
-                        </li>
-                        <li :class="{ 'active': $page.url === getActivePath(route('payment.index')) }">
-                            <NavLink :href="route('payment.index')">
-                                <i class='bx bx-radio-circle-marked' ></i>
-                                Payment Transaction
-                            </NavLink>
-                        </li>
-                        <li :class="{ 'active': $page.url === getActivePath(route('transport-fee.index')) }">
-                            <NavLink :href="route('transport-fee.index')">
-                                <i class='bx bx-radio-circle-marked' ></i>
-                                Student Transport fees
-                            </NavLink>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="sidebar-item">
-                <div class="sidebar-item-header">
-                        <span class="icon">
-                            <i class='bx bx-user' ></i>
-                        </span>
-                    <h4>Students</h4>
-                </div>
-                <div class="sidebar-item-body">
-                    <ul>
-                        <li :class="{ 'active': $page.url === getActivePath(route('student.create')) }">
-                            <NavLink :href="route('student.create')">
-                                <i class='bx bx-radio-circle-marked' ></i>
-                                Add Student
-                            </NavLink>
-                        </li>
-                        <li :class="{ 'active': $page.url === getActivePath(route('student.index')) }">
-                            <NavLink :href="route('student.index')">
-                                <i class='bx bx-radio-circle-marked' ></i>
-                                Student list
-                            </NavLink>
-                        </li>
-                        <li :class="{ 'active': $page.url === getActivePath(route('student.import')) }">
-                            <NavLink :href="route('student.import')">
-                                <i class='bx bx-radio-circle-marked' ></i>
-                                Student Bulk Import
-                            </NavLink>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="sidebar-item">
-                <div class="sidebar-item-header">
-                        <span class="icon">
-                            <i class='bx bx-message-dots' ></i>
-                        </span>
-                    <h4>SMS Panel</h4>
-                </div>
-                <div class="sidebar-item-body">
-                    <ul>
-                        <li :class="{ 'active': $page.url === getActivePath(route('sms.send-sms')) }">
-                            <NavLink :href="route('sms.send-sms')">
-                                <i class='bx bx-radio-circle-marked' ></i>
-                                Send SMS
-                            </NavLink>
-                        </li>
-                        <li :class="{ 'active': $page.url === getActivePath(route('sms.group-sms')) }">
-                            <NavLink :href="route('sms.group-sms')">
-                                <i class='bx bx-radio-circle-marked' ></i>
-                                Send Group SMS
-                            </NavLink>
-                        </li>
-                        <li :class="{ 'active': $page.url === getActivePath(route('sms.due-alert')) }">
-                            <NavLink :href="route('sms.due-alert')">
-                                <i class='bx bx-radio-circle-marked' ></i>
-                                Send Bulk Due Alert
-                            </NavLink>
-                        </li>
-                        <li :class="{ 'active': $page.url === getActivePath(route('sms.logs')) }">
-                            <NavLink :href="route('sms.logs')">
-                                <i class='bx bx-radio-circle-marked' ></i>
-                                SMS Logs
-                            </NavLink>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-
-            <div class="sidebar-item">
-                <div class="sidebar-item-header">
-                        <span class="icon">
                             <i class="bx bx-cog"></i>
                         </span>
                     <h4>Configurations</h4>
                 </div>
                 <div class="sidebar-item-body">
                     <ul>
-                        <li :class="{ 'active': $page.url === getActivePath(route('fee.index')) }">
-                            <NavLink :href="route('fee.index')">
+                        <li :class="{ 'active': $page.url === getActivePath(route('category.index')) }">
+                            <NavLink :href="route('category.index')">
                                 <i class='bx bx-radio-circle-marked' ></i>
-                                Fees setup
+                                Categories
                             </NavLink>
                         </li>
-                        <li :class="{ 'active': $page.url === getActivePath(route('area.index')) }">
-                            <NavLink :href="route('area.index')">
+                        <li :class="{ 'active': $page.url === getActivePath(route('model.index')) }">
+                            <NavLink :href="route('model.index')">
                                 <i class='bx bx-radio-circle-marked' ></i>
-                                Areas
+                                Models
                             </NavLink>
                         </li>
-                        <li :class="{ 'active': $page.url === getActivePath(route('academic-plan.index')) }">
-                            <NavLink :href="route('academic-plan.index')">
+                        <li :class="{ 'active': $page.url === getActivePath(route('brand.index')) }">
+                            <NavLink :href="route('brand.index')">
                                 <i class='bx bx-radio-circle-marked' ></i>
-                                Academic Plans
+                                Brands
                             </NavLink>
                         </li>
-                        <li :class="{ 'active': $page.url === getActivePath(route('academic-year.index')) }">
-                            <NavLink :href="route('academic-year.index')">
+                        <li :class="{ 'active': $page.url === getActivePath(route('building.index')) }">
+                            <NavLink :href="route('building.index')">
                                 <i class='bx bx-radio-circle-marked' ></i>
-                                Academic years
+                                Buildings
                             </NavLink>
                         </li>
-                        <li :class="{ 'active': $page.url === getActivePath(route('academic-class.index')) }">
-                            <NavLink :href="route('academic-class.index')">
+                        <li :class="{ 'active': $page.url === getActivePath(route('floor.index')) }">
+                            <NavLink :href="route('floor.index')">
                                 <i class='bx bx-radio-circle-marked' ></i>
-                                Academic Class
-                            </NavLink>
-                        </li>
-                        <li :class="{ 'active': $page.url === getActivePath(route('academic-group.index')) }">
-                            <NavLink :href="route('academic-group.index')">
-                                <i class='bx bx-radio-circle-marked' ></i>
-                                Academic Group
-                            </NavLink>
-                        </li>
-                        <li :class="{ 'active': $page.url === getActivePath(route('academic-section.index')) }">
-                            <NavLink :href="route('academic-section.index')">
-                                <i class='bx bx-radio-circle-marked' ></i>
-                                Academic Section
+                                Floors
                             </NavLink>
                         </li>
                         <li :class="{ 'active': $page.url === getActivePath(route('settings.index')) }">
@@ -209,30 +91,6 @@ const toggleSidebar = () => {
                 </div>
                 <div class="sidebar-item-body">
                     <ul>
-                        <li :class="{ 'active': $page.url === getActivePath(route('site.settings')) }">
-                            <NavLink :href="route('site.settings')">
-                                <i class='bx bx-radio-circle-marked' ></i>
-                                Monthly Transactions
-                            </NavLink>
-                        </li>
-                        <li :class="{ 'active': $page.url === getActivePath(route('site.settings')) }">
-                            <NavLink :href="route('site.settings')">
-                                <i class='bx bx-radio-circle-marked' ></i>
-                                All Transactions
-                            </NavLink>
-                        </li>
-                        <li :class="{ 'active': $page.url === getActivePath(route('site.settings')) }">
-                            <NavLink :href="route('site.settings')">
-                                <i class='bx bx-radio-circle-marked' ></i>
-                                Due Reports
-                            </NavLink>
-                        </li>
-                        <li :class="{ 'active': $page.url === getActivePath(route('reports.sms')) }">
-                            <NavLink :href="route('reports.sms')">
-                                <i class='bx bx-radio-circle-marked' ></i>
-                                SMS Reports
-                            </NavLink>
-                        </li>
                     </ul>
                 </div>
             </div>

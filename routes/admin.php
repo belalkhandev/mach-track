@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\AcademicPlanController;
 use App\Http\Controllers\Admin\AcademicSectionController;
 use App\Http\Controllers\Admin\AcademicYearController;
 use App\Http\Controllers\Admin\AreaController;
+use App\Http\Controllers\Admin\BuildingController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\ContactSettingController;
@@ -51,6 +52,51 @@ Route::middleware('guest')->group(function () {
 Route::middleware('auth')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
+    Route::prefix('categories')->group(function () {
+        Route::get('/', [SettingsController::class, 'index'])->name('category.index');
+        Route::get('/create', [SettingsController::class, 'create'])->name('category.create');
+        Route::post('/create', [SettingsController::class, 'store']);
+        Route::get('/{categoryId}/edit', [SettingsController::class, 'edit'])->name('category.edit');
+        Route::put('/{categoryId}/edit', [SettingsController::class, 'update']);
+        Route::delete('/{categoryId}', [SettingsController::class, 'destroy'])->name('category.delete');
+    });
+
+    Route::prefix('brands')->group(function () {
+        Route::get('/', [SettingsController::class, 'index'])->name('brand.index');
+        Route::get('/create', [SettingsController::class, 'create'])->name('brand.create');
+        Route::post('/create', [SettingsController::class, 'store']);
+        Route::get('/{brandId}/edit', [SettingsController::class, 'edit'])->name('brand.edit');
+        Route::put('/{brandId}/edit', [SettingsController::class, 'update']);
+        Route::delete('/{brandId}', [SettingsController::class, 'destroy'])->name('brand.delete');
+    });
+
+    Route::prefix('models')->group(function () {
+        Route::get('/', [SettingsController::class, 'index'])->name('model.index');
+        Route::get('/create', [SettingsController::class, 'create'])->name('model.create');
+        Route::post('/create', [SettingsController::class, 'store']);
+        Route::get('/{modelId}/edit', [SettingsController::class, 'edit'])->name('model.edit');
+        Route::put('/{modelId}/edit', [SettingsController::class, 'update']);
+        Route::delete('/{modelId}', [SettingsController::class, 'destroy'])->name('model.delete');
+    });
+
+    Route::prefix('buildings')->group(function () {
+        Route::get('/', [BuildingController::class, 'index'])->name('building.index');
+        Route::get('/create', [BuildingController::class, 'create'])->name('building.create');
+        Route::post('/create', [BuildingController::class, 'store']);
+        Route::get('/{buildingId}/edit', [BuildingController::class, 'edit'])->name('building.edit');
+        Route::put('/{buildingId}/edit', [BuildingController::class, 'update']);
+        Route::delete('/{buildingId}', [BuildingController::class, 'destroy'])->name('building.delete');
+    });
+
+    Route::prefix('floors')->group(function () {
+        Route::get('/', [SettingsController::class, 'index'])->name('floor.index');
+        Route::get('/create', [SettingsController::class, 'create'])->name('floor.create');
+        Route::post('/create', [SettingsController::class, 'store']);
+        Route::get('/{floorId}/edit', [SettingsController::class, 'edit'])->name('floor.edit');
+        Route::put('/{floorId}/edit', [SettingsController::class, 'update']);
+        Route::delete('/{floorId}', [SettingsController::class, 'destroy'])->name('floor.delete');
+    });
+
     Route::prefix('settings')->group(function () {
         Route::get('/', [SettingsController::class, 'index'])->name('settings.index');
         Route::get('/create', [SettingsController::class, 'create'])->name('settings.create');
@@ -59,9 +105,6 @@ Route::middleware('auth')->group(function () {
         Route::put('/{settingId}/edit', [SettingsController::class, 'update']);
         Route::delete('/{settingId}', [SettingsController::class, 'destroy'])->name('settings.delete');
     });
-
-    Route::get('site-settings', [SiteSettingsController::class, 'index'])->name('site.settings');
-    Route::post('site-settings', [SiteSettingsController::class, 'store']);
 
     Route::get('confirm-password', [ConfirmablePasswordController::class, 'show'])->name('password.confirm');
     Route::post('confirm-password', [ConfirmablePasswordController::class, 'store']);
