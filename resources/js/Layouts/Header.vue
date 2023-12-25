@@ -7,7 +7,7 @@
     <header>
         <div class="apps">
             <div class="app-brand">
-                <h2 class="text-white">BAFSK BUS</h2>
+                <h2 class="text-white">MachTrack</h2>
             </div>
         </div>
         <div class="header-navs">

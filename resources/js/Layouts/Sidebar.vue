@@ -48,8 +48,8 @@ const toggleSidebar = () => {
                                 Categories
                             </NavLink>
                         </li>
-                        <li :class="{ 'active': $page.url === getActivePath(route('model.index')) }">
-                            <NavLink :href="route('model.index')">
+                        <li :class="{ 'active': $page.url === getActivePath(route('machine.model.index')) }">
+                            <NavLink :href="route('machine.model.index')">
                                 <i class='bx bx-radio-circle-marked' ></i>
                                 Models
                             </NavLink>
