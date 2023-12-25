@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('floors', function (Blueprint $table) {
             $table->id();
             $table->foreignId('building_id')->nullable()->constrained('buildings')->cascadeOnDelete();
-            $table->string('name')->unique();
+            $table->string('name');
             $table->boolean('is_active')->default(true);
             $table->timestamps();
         });

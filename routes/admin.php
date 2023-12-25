@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\ContactSettingController;
 use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\FeeController;
+use App\Http\Controllers\Admin\FloorController;
 use App\Http\Controllers\Admin\LeaderController;
 use App\Http\Controllers\Admin\PageController;
 use App\Http\Controllers\Admin\PartnerController;
@@ -89,12 +90,12 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::prefix('floors')->group(function () {
-        Route::get('/', [SettingsController::class, 'index'])->name('floor.index');
-        Route::get('/create', [SettingsController::class, 'create'])->name('floor.create');
-        Route::post('/create', [SettingsController::class, 'store']);
-        Route::get('/{floorId}/edit', [SettingsController::class, 'edit'])->name('floor.edit');
-        Route::put('/{floorId}/edit', [SettingsController::class, 'update']);
-        Route::delete('/{floorId}', [SettingsController::class, 'destroy'])->name('floor.delete');
+        Route::get('/', [FloorController::class, 'index'])->name('floor.index');
+        Route::get('/create', [FloorController::class, 'create'])->name('floor.create');
+        Route::post('/create', [FloorController::class, 'store']);
+        Route::get('/{floorId}/edit', [FloorController::class, 'edit'])->name('floor.edit');
+        Route::put('/{floorId}/edit', [FloorController::class, 'update']);
+        Route::delete('/{floorId}', [FloorController::class, 'destroy'])->name('floor.delete');
     });
 
     Route::prefix('settings')->group(function () {

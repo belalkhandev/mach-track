@@ -27,16 +27,28 @@ abstract class Repository
         return $this->query()->get();
     }
 
-    public function getByPaginate($limit = 15)
+    public function getAllByOrder($column = 'id', $orderBy = 'ASC')
     {
         return $this->query()
-            ->latest()
+            ->orderBy($column, $orderBy)
+            ->get();
+    }
+
+    public function getByPaginate($limit = 15, $with = null)
+    {
+        return $this->query()
+            ->when($with, function ($query) use ($with){
+                $query->with($with);
+            })
             ->paginate($limit);
     }
 
-    public function getLatestByPaginate($limit = 15)
+    public function getLatestByPaginate($limit = 15, $with = null)
     {
         return $this->query()
+            ->when($with, function ($query) use ($with){
+                $query->with($with);
+            })
             ->latest()
             ->paginate($limit);
     }
