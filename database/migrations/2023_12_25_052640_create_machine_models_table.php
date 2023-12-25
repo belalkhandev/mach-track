@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('academic_sections', function (Blueprint $table) {
+        Schema::create('machine_models', function (Blueprint $table) {
             $table->id();
             $table->string('name')->unique();
             $table->boolean('is_active')->default(true);
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('academic_sections');
+        Schema::dropIfExists('machine_models');
     }
 };

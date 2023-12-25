@@ -4,11 +4,11 @@ namespace App\Enums;
 
 use App\Enums\Concerns\EnumAttributes;
 
-enum DiscountType: string
+enum TransmissionTypes: string
 {
     use EnumAttributes;
 
-    case AMOUNT = 'amount';
-    case PERCENT = 'percent';
+    case AUTO = 'auto';
+    case MANUAL = 'manual';
 
 }

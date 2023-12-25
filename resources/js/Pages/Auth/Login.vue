@@ -26,8 +26,8 @@ const submit = () => {
         <div class="login-box">
             <div class="login-header">
                 <div class="logo">
-                    <img src="@/assets/images/bafsk-logo.png" alt="">
-                    <h2>Welcome to BAFSK BUS</h2>
+                    <img src="@/assets/images/logo.png" alt="">
+                    <h2>Welcome Back! Login</h2>
                 </div>
             </div>
             <div class="login-body">

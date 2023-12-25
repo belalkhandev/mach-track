@@ -19,14 +19,14 @@ class UserTableSeeder extends Seeder
     {
         User::create([
             'name' => 'Super Admin',
-            'email' => 'superadmin@bafskbus.com',
-            'password' => Hash::make('!@#SecRet23')
+            'email' => 'superadmin@example.com',
+            'password' => Hash::make('secret')
         ]);
 
         User::create([
             'name' => 'Admin',
-            'email' => 'admin@bafskbus.com',
-            'password' => Hash::make('!@#SecRet23')
+            'email' => 'admin@example.com',
+            'password' => Hash::make('secret')
         ]);
     }
 }

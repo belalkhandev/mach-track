@@ -13,8 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('academic_groups', function (Blueprint $table) {
+        Schema::create('floors', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('building_id')->nullable()->constrained('buildings')->cascadeOnDelete();
             $table->string('name')->unique();
             $table->boolean('is_active')->default(true);
             $table->timestamps();
@@ -28,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('academic_groups');
+        Schema::dropIfExists('floors');
     }
 };

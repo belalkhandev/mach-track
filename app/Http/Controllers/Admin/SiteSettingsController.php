@@ -4,15 +4,15 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Repositories\MediaRepository;
-use App\Repositories\SiteSettingRepository;
+use App\Repositories\SettingRepository;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
 class SiteSettingsController extends Controller
 {
     public function __construct(
-        protected SiteSettingRepository $settingRepository,
-        protected MediaRepository $mediaRepository
+        protected SettingRepository $settingRepository,
+        protected MediaRepository   $mediaRepository
     )
     {
     }
