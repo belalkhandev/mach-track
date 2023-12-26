@@ -95,7 +95,7 @@ const deleteAction = (brand_id) => {
     <AdminPanelLayout title="Brands">
         <template #header>Brands</template>
         <div class="row">
-            <div class="col-lg-8">
+            <div class="col-lg-12">
                 <div class="box">
                     <div class="box-header">
                         <h5 class="title">Brands</h5>

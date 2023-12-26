@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\BuildingController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\FloorController;
+use App\Http\Controllers\Admin\MachineController;
 use App\Http\Controllers\Admin\MachineModelController;
 use App\Http\Controllers\Admin\SettingsController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
@@ -27,6 +28,25 @@ Route::middleware('guest')->group(function () {
 
 Route::middleware('auth')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+
+
+    Route::prefix('machines/tracking')->group(function () {
+        Route::get('/', [CategoryController::class, 'index'])->name('machine.tracking.index');
+        Route::get('/create', [CategoryController::class, 'create'])->name('machine.tracking.create');
+        Route::post('/create', [CategoryController::class, 'store']);
+        Route::get('/{machineTrackingId}/edit', [CategoryController::class, 'edit'])->name('machine.tracking.edit');
+        Route::put('/{machineTrackingId}/edit', [CategoryController::class, 'update']);
+        Route::delete('/{machineTrackingId}', [CategoryController::class, 'destroy'])->name('machine.tracking.delete');
+    });
+
+    Route::prefix('machines')->group(function () {
+        Route::get('/', [MachineController::class, 'index'])->name('machine.index');
+        Route::get('/create', [MachineController::class, 'create'])->name('machine.create');
+        Route::post('/create', [MachineController::class, 'store']);
+        Route::get('/{machineId}/edit', [MachineController::class, 'edit'])->name('machine.edit');
+        Route::put('/{machineId}/edit', [MachineController::class, 'update']);
+        Route::delete('/{machineId}', [MachineController::class, 'destroy'])->name('machine.delete');
+    });
 
     Route::prefix('categories')->group(function () {
         Route::get('/', [CategoryController::class, 'index'])->name('category.index');

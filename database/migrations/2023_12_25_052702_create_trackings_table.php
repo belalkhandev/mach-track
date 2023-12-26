@@ -18,10 +18,10 @@ return new class extends Migration
             $table->foreignId('machine_id')->nullable()->constrained('machines')->cascadeOnDelete();
             $table->foreignId('floor_id')->nullable()->constrained('floors')->cascadeOnDelete();
             $table->string('line_no')->nullable();
-            $table->enum('status', \App\Enums\MachineConditions::values())->nullable();
-            $table->text('remarks');
-            $table->dateTime('start_at')->nullable();
-            $table->dateTime('end_at')->nullable();
+            $table->enum('status', \App\Enums\MachineStatuses::values())->nullable();
+            $table->dateTime('started_at')->nullable();
+            $table->dateTime('ends_at')->nullable();
+            $table->foreignId('user_id')->nullable()->constrained('users')->cascadeOnDelete();
             $table->timestamps();
         });
     }

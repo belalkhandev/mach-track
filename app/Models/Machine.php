@@ -8,4 +8,37 @@ use Illuminate\Database\Eloquent\Model;
 class Machine extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'category_id',
+        'brand_id',
+        'machine_model_id',
+        'floor_id',
+        'line_no',
+        'machine_number',
+        'local_number',
+        'transmission_type',
+        'status',
+        'is_rented'
+    ];
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+
+    public function brand()
+    {
+        return $this->belongsTo(Brand::class);
+    }
+
+    public function machineModel()
+    {
+        return $this->belongsTo(MachineModel::class);
+    }
+
+    public function notes()
+    {
+        return $this->morphMany(Note::class, 'notable');
+    }
 }

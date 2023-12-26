@@ -29,6 +29,18 @@ const toggleSidebar = () => {
                                 Dashboard
                             </NavLink>
                         </li>
+                        <li :class="{ 'active': $page.url === getActivePath(route('machine.tracking.index')) }">
+                            <NavLink :href="route('machine.tracking.index')">
+                                <i class='bx bx-map-pin'></i>
+                                Machine Trackings
+                            </NavLink>
+                        </li>
+                        <li :class="{ 'active': $page.url === getActivePath(route('machine.index')) }">
+                            <NavLink :href="route('machine.index')">
+                                <i class='bx bxl-dribbble' ></i>
+                                Machine list
+                            </NavLink>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -70,12 +82,6 @@ const toggleSidebar = () => {
                             <NavLink :href="route('floor.index')">
                                 <i class='bx bx-radio-circle-marked' ></i>
                                 Floors
-                            </NavLink>
-                        </li>
-                        <li :class="{ 'active': $page.url === getActivePath(route('settings.index')) }">
-                            <NavLink :href="route('settings.index')">
-                                <i class='bx bx-radio-circle-marked' ></i>
-                                Settings
                             </NavLink>
                         </li>
                     </ul>

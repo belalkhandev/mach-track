@@ -4,7 +4,7 @@ namespace App\Enums;
 
 use App\Enums\Concerns\EnumAttributes;
 
-enum MachineConditions: string
+enum MachineStatuses: string
 {
     use EnumAttributes;
 

@@ -101,7 +101,7 @@ const deleteAction = (floor_id) => {
     <AdminPanelLayout title="Floors">
         <template #header>Floors</template>
         <div class="row">
-            <div class="col-lg-8">
+            <div class="col-lg-12">
                 <div class="box">
                     <div class="box-header">
                         <h5 class="title">Floors</h5>
@@ -114,8 +114,8 @@ const deleteAction = (floor_id) => {
                             <thead>
                             <tr>
                                 <th>#</th>
-                                <th>Floor</th>
                                 <th>Building</th>
+                                <th>Floor</th>
                                 <th>Status</th>
                                 <th></th>
                             </tr>

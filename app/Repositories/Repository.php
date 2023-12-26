@@ -27,9 +27,12 @@ abstract class Repository
         return $this->query()->get();
     }
 
-    public function getAllByOrder($column = 'id', $orderBy = 'ASC')
+    public function getAllByOrder($column = 'id', $orderBy = 'ASC', $with = null)
     {
         return $this->query()
+            ->when($with, function ($query) use ($with){
+                $query->with($with);
+            })
             ->orderBy($column, $orderBy)
             ->get();
     }
