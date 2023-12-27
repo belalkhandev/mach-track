@@ -144,13 +144,15 @@ const deleteAction = (machine_id) => {
                         </div>
                     </div>
                     <div class="box-body">
-                        <table class="table">
+                        <table class="table-auto md:table-fixed">
                             <thead>
                             <tr>
                                 <th>#</th>
                                 <th>Name</th>
+                                <th>Brand</th>
                                 <th>Machine No</th>
                                 <th>Model/Type</th>
+                                <th>Floor</th>
                                 <th>Status</th>
                                 <th>Rented?</th>
                                 <th></th>
@@ -161,15 +163,20 @@ const deleteAction = (machine_id) => {
                                 <td>{{ i+1 }}</td>
                                 <td>
                                     {{ machine.category.name }}
-                                    <p class="text-secondary" v-if="machine.brand">Brand: {{ machine.brand.name }} </p>
+                                </td>
+                                <td>
+                                    <p v-if="machine.brand">{{ machine.brand.name }} </p>
                                 </td>
                                 <td>
                                     {{ machine.machine_number }}
-                                    <p class="text-secondary" v-if="machine.local_number">Local no: {{ machine.local_number }}</p>
+                                    <p class="text-secondary" v-if="machine.local_number">L/N: {{ machine.local_number }}</p>
                                 </td>
                                 <td>
                                     <p v-if="machine.machine_model">Model: {{ machine.machine_model.name }} </p>
                                     <p class="text-secondary" v-if="machine.transmission_type">{{ machine.transmission_type.charAt(0).toUpperCase()+machine.transmission_type.slice(1) }} </p>
+                                </td>
+                                <td>
+                                    <p v-if="machine.floor">{{ machine.floor.name }} ({{ machine.floor.building.name }}) </p>
                                 </td>
                                 <td>
                                     <MachinStatusLabel :status="machine.status"/>
@@ -181,6 +188,9 @@ const deleteAction = (machine_id) => {
                                 <td>
                                     <div class="action">
                                         <ul>
+                                            <li>
+                                                <Link :href="route('machine.show', machine.id)" class="btn btn-sm btn-rounded btn-outline-success"><i class="bx bx-show-alt"></i></Link>
+                                            </li>
                                             <li>
                                                 <button @click="editAction(machine)" class="btn btn-sm btn-rounded btn-outline-warning"><i class="bx bx-edit"></i></button>
                                             </li>

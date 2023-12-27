@@ -37,8 +37,13 @@ class Machine extends Model
         return $this->belongsTo(MachineModel::class);
     }
 
+    public function floor()
+    {
+        return $this->belongsTo(Floor::class);
+    }
+
     public function notes()
     {
-        return $this->morphMany(Note::class, 'notable');
+        return $this->morphMany(Note::class, 'notable')->latest();
     }
 }

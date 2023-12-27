@@ -6,30 +6,21 @@ import moment from "moment";
 import PaymentStatusLabel from "@/Components/PaymentStatusLabel.vue";
 
 const props = defineProps({
-    total_students: {
+    running_count: {
         type: Number,
         default: 0
     },
-    total_bills: {
+    idle_count: {
         type: Number,
         default: 0
     },
-    total_collections: {
+    repairable_count: {
         type: Number,
         default: 0
     },
-    total_dues: {
+    disable_count: {
         type: Number,
         default: 0
-    },
-    chart_data: {
-        type: Object
-    },
-    latest_payments: {
-        type: Object
-    },
-    data_month_year: {
-        type: String
     }
 });
 
@@ -46,7 +37,7 @@ const props = defineProps({
                         <h5>Running</h5>
                     </div>
                     <div class="card-content">
-                        <h2>{{ total_students }}</h2>
+                        <h2>{{ running_count }}</h2>
 
                     </div>
                 </div>
@@ -58,7 +49,7 @@ const props = defineProps({
                         <h5>Idle</h5>
                     </div>
                     <div class="card-content">
-                        <h2>{{ total_bills }}</h2>
+                        <h2>{{ idle_count }}</h2>
                     </div>
                 </div>
             </div>
@@ -69,7 +60,7 @@ const props = defineProps({
                         <h5>Repairable</h5>
                     </div>
                     <div class="card-content">
-                        <h2>{{ total_collections }}</h2>
+                        <h2>{{ repairable_count }}</h2>
                     </div>
                 </div>
             </div>
@@ -80,7 +71,7 @@ const props = defineProps({
                         <h5>Disable</h5>
                     </div>
                     <div class="card-content">
-                        <h2>{{ total_dues }}</h2>
+                        <h2>{{ disable_count }}</h2>
                     </div>
                 </div>
             </div>

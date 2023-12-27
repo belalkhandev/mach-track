@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class MachineStoreRequest extends FormRequest
+class MachineUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,8 +25,8 @@ class MachineStoreRequest extends FormRequest
     {
         return [
             'category_id' => 'required',
-            'machine_number' => 'required|unique:machines,machine_number',
-            'local_number' => 'nullable|unique:machines,local_number',
+            'machine_number' => 'required|unique:machines,machine_number,'.$this->route('machineId'),
+            'local_number' => 'nullable|unique:machines,local_number,'.$this->route('machineId'),
             'transmission_type' => 'required',
             'floor_id' => 'required',
             'status' => 'required',

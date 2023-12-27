@@ -6,6 +6,7 @@ use App\Enums\MachineStatuses;
 use App\Enums\TransmissionTypes;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\MachineStoreRequest;
+use App\Http\Requests\MachineUpdateRequest;
 use App\Repositories\BrandRepository;
 use App\Repositories\CategoryRepository;
 use App\Repositories\FloorRepository;
@@ -33,10 +34,16 @@ class MachineController extends Controller
         $categories = $this->categoryRepository->getAllByOrder('name');
         $brands = $this->brandRepository->getAllByOrder('name');
         $models = $this->modelRepository->getAllByOrder('name');
-        $machines = $this->machineRepository->getLatestByPaginate(with: ['category', 'brand', 'machineModel']);
+        $machines = $this->machineRepository->getLatestByPaginate(with: [
+            'category',
+            'brand',
+            'machineModel',
+            'floor',
+            'floor.building'
+        ]);
         $floors = $this->floorRepository->getAllByOrder('building_id', with: 'building');
 
-        return Inertia::render('Machines', [
+        return Inertia::render('Machine/Index', [
             'categories' => $categories,
             'brands' => $brands,
             'machine_models' => $models,
@@ -44,6 +51,24 @@ class MachineController extends Controller
             'transmission_types' => TransmissionTypes::values(),
             'machine_statuses' => MachineStatuses::values(),
             'floors' => $floors
+        ]);
+    }
+
+    public function show($machineId)
+    {
+        $machine = $this->machineRepository->query()
+            ->with([
+                'category',
+                'brand',
+                'machineModel',
+                'floor',
+                'floor.building',
+                'notes'
+            ])
+            ->findOrFail($machineId);
+
+        return Inertia::render('Machine/Show', [
+           'machine' => $machine
         ]);
     }
 
@@ -58,7 +83,7 @@ class MachineController extends Controller
         return to_route('machine.index');
     }
 
-    public function update(MachineStoreRequest $request, $machineId)
+    public function update(MachineUpdateRequest $request, $machineId)
     {
         $this->machineRepository->updateByRequest($request, $machineId);
 

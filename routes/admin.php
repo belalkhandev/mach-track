@@ -41,6 +41,7 @@ Route::middleware('auth')->group(function () {
 
     Route::prefix('machines')->group(function () {
         Route::get('/', [MachineController::class, 'index'])->name('machine.index');
+        Route::get('/show/{machineId}', [MachineController::class, 'show'])->name('machine.show');
         Route::get('/create', [MachineController::class, 'create'])->name('machine.create');
         Route::post('/create', [MachineController::class, 'store']);
         Route::get('/{machineId}/edit', [MachineController::class, 'edit'])->name('machine.edit');
