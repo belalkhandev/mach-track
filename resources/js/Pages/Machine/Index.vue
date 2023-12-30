@@ -144,7 +144,7 @@ const deleteAction = (machine_id) => {
                         </div>
                     </div>
                     <div class="box-body">
-                        <table class="table-auto md:table-fixed">
+                        <table class="table">
                             <thead>
                             <tr>
                                 <th>#</th>
