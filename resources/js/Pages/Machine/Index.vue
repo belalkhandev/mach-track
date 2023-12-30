@@ -37,6 +37,10 @@ const props = defineProps({
     floors: {
         type: Object,
         default: () => ({})
+    },
+    filtering_data: {
+        type: Object,
+        default: () => ({})
     }
 });
 
@@ -129,6 +133,19 @@ const deleteAction = (machine_id) => {
     })
 }
 
+const filtering_form = useForm({
+    search: props.filtering_data.search ? props.filtering_data.search : '',
+    category_id: props.filtering_data.category_id ? props.filtering_data.category_id : '',
+    floor_id: props.filtering_data.floor_id ? props.filtering_data.floor_id : '',
+    machine_status: props.filtering_data.machine_status ? props.filtering_data.machine_status : '',
+});
+
+const submitSearchForm = () => {
+    filtering_form.get(route('machine.index'), {
+        preserveScroll: true,
+    })
+}
+
 </script>
 
 <template>
@@ -140,10 +157,49 @@ const deleteAction = (machine_id) => {
                     <div class="box-header">
                         <h5 class="title">Machines</h5>
                         <div class="action">
-                            <button @click="showFormModal" class="btn btn-sm btn-rounded btn-outline-primary"><i class="bx bx-plus"></i></button>
+                            <button @click="showFormModal" class="btn btn-sm btn-outline-primary">Add new</button>
                         </div>
                     </div>
                     <div class="box-body">
+                        <form @submit.prevent="submitSearchForm">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <input type="text" v-model="filtering_form.search" class="form-control" placeholder="Search key">
+                                    </div>
+                                </div>
+                                <div class="col-lg-2 col-md-3">
+                                    <div class="form-group">
+                                        <select v-model="filtering_form.category_id" class="mr-2 form-select">
+                                            <option value="">Select machine</option>
+                                            <option v-for="category in categories" :value="category.id">{{ category.name }}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-2 col-md-3">
+                                    <div class="form-group">
+                                        <select v-model="filtering_form.floor_id" class="mr-2 form-select">
+                                            <option value="">Select Floor</option>
+                                            <option v-for="floor in floors" :value="floor.id">{{ floor.name }} - {{ floor.building.name }}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-2 col-md-3">
+                                    <div class="form-group">
+                                        <select v-model="filtering_form.machine_status" class="mr-2 form-select">
+                                            <option value="">Status</option>
+                                            <option v-for="machine_status in machine_statuses" :value="machine_status">{{ machine_status.charAt(0).toUpperCase()+machine_status.slice(1) }}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3">
+                                    <Link :href="route('machine.index')" class="btn btn-outline-warning">
+                                        Reset
+                                    </Link>
+                                    <button type="submit" class="ml-2 btn btn-outline-primary">Search</button>
+                                </div>
+                            </div>
+                        </form>
                         <table class="table">
                             <thead>
                             <tr>

@@ -29,18 +29,14 @@ class MachineController extends Controller
     {
     }
 
-    public function index()
+    public function index(Request $request)
     {
         $categories = $this->categoryRepository->getAllByOrder('name');
         $brands = $this->brandRepository->getAllByOrder('name');
         $models = $this->modelRepository->getAllByOrder('name');
-        $machines = $this->machineRepository->getLatestByPaginate(with: [
-            'category',
-            'brand',
-            'machineModel',
-            'floor',
-            'floor.building'
-        ]);
+
+        $machines = $this->machineRepository->getAllByPaginate($request);
+
         $floors = $this->floorRepository->getAllByOrder('building_id', with: 'building');
 
         return Inertia::render('Machine/Index', [
@@ -50,7 +46,8 @@ class MachineController extends Controller
             'machines' => $machines,
             'transmission_types' => TransmissionTypes::values(),
             'machine_statuses' => MachineStatuses::values(),
-            'floors' => $floors
+            'floors' => $floors,
+            'filtering_data' => $request
         ]);
     }
 
