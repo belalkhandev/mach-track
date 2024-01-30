@@ -13,6 +13,7 @@ use App\Repositories\FloorRepository;
 use App\Repositories\MachineModelRepository;
 use App\Repositories\MachineRepository;
 use App\Repositories\NoteRepository;
+use App\Services\Exporter\MachineExport;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -95,7 +96,12 @@ class MachineController extends Controller
     public function destroy($machineId)
     {
         $this->machineRepository->deleteByRequest($machineId);
+    }
 
-        return to_route('machine.index');
+    public function export(Request $request, MachineExport $export)
+    {
+        $machines = $this->machineRepository->getAllForExport($request);
+
+        return $export->exportPDF($machines);
     }
 }

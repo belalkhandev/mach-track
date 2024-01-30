@@ -47,6 +47,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/{machineId}/edit', [MachineController::class, 'edit'])->name('machine.edit');
         Route::put('/{machineId}/edit', [MachineController::class, 'update']);
         Route::delete('/{machineId}', [MachineController::class, 'destroy'])->name('machine.delete');
+        Route::get('/export', [MachineController::class, 'export'])->name('machine.export');
     });
 
     Route::prefix('categories')->group(function () {

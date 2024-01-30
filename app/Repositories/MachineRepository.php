@@ -25,8 +25,7 @@ class MachineRepository extends Repository
                 'floor.building'
             ])
             ->when($searchKey = $request->search, function($query) use ($searchKey) {
-                $query->where('machine_number', $searchKey)
-                    ->orWhere('local_number', $searchKey);
+                $query->where('machine_number', 'LIKE', '%'.$searchKey.'%')->orWhere('local_number', 'LIKE', '%'.$searchKey.'%');
             })
             ->when($categoryId = $request->category_id, function($query) use ($categoryId) {
                 $query->where('category_id', $categoryId);
@@ -41,6 +40,34 @@ class MachineRepository extends Repository
             ->orderBy('categories.name')
             ->paginate()
             ->withQueryString();
+    }
+
+    public function getAllForExport($request)
+    {
+        return $this->query()
+            ->select('machines.*')
+            ->with([
+                'category',
+                'brand',
+                'machineModel',
+                'floor',
+                'floor.building'
+            ])
+            ->when($searchKey = $request->search, function($query) use ($searchKey) {
+                $query->where('machine_number', 'LIKE', '%'.$searchKey.'%')->orWhere('local_number', 'LIKE', '%'.$searchKey.'%');
+            })
+            ->when($categoryId = $request->category_id, function($query) use ($categoryId) {
+                $query->where('category_id', $categoryId);
+            })
+            ->when($floorId = $request->floor_id, function($query) use ($floorId) {
+                $query->where('floor_id', $floorId);
+            })
+            ->when($status = $request->machine_status, function($query) use ($status) {
+                $query->where('status', $status);
+            })
+            ->leftJoin('categories', 'categories.id', '=', 'machines.category_id')
+            ->orderBy('categories.name')
+            ->get();
     }
 
     public function storeByRequest(Request $request)

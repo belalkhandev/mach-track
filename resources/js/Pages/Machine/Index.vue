@@ -110,28 +110,28 @@ const editAction = (machine) => {
 }
 
 
-const deleteAction = (machine_id) => {
-    Swal.fire({
-        title: 'Are you sure?',
-        text: "You won't be able to revert this!",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#0284c7',
-        cancelButtonColor: '#DC2626',
-        confirmButtonText: 'Yes, delete it!'
-    }).then((result) => {
-        if (result.isConfirmed) {
-            form.delete(route('machine.delete', machine_id), {
-                onSuccess: () => {
-                    Toast.fire({
-                        icon: 'success',
-                        title: 'Machine has been deleted successfully'
-                    });
-                }
-            })
-        }
-    })
-}
+    const deleteAction = (machine_id) => {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#0284c7',
+            cancelButtonColor: '#DC2626',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                form.delete(route('machine.delete', machine_id), {
+                    onSuccess: () => {
+                        Toast.fire({
+                            icon: 'success',
+                            title: 'Machine has been deleted successfully'
+                        });
+                    }
+                })
+            }
+        })
+    }
 
 const filtering_form = useForm({
     search: props.filtering_data.search ? props.filtering_data.search : '',
@@ -161,45 +161,53 @@ const submitSearchForm = () => {
                         </div>
                     </div>
                     <div class="box-body">
-                        <form @submit.prevent="submitSearchForm">
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <input type="text" v-model="filtering_form.search" class="form-control" placeholder="Search key">
+                        <div class="d-flex align-items-start">
+                            <form @submit.prevent="submitSearchForm">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <input type="text" v-model="filtering_form.search" class="form-control" placeholder="Search key">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2 col-md-3">
+                                        <div class="form-group">
+                                            <select v-model="filtering_form.category_id" class="mr-2 form-select">
+                                                <option value="">Select machine</option>
+                                                <option v-for="category in categories" :value="category.id">{{ category.name }}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2 col-md-3">
+                                        <div class="form-group">
+                                            <select v-model="filtering_form.floor_id" class="mr-2 form-select">
+                                                <option value="">Select Floor</option>
+                                                <option v-for="floor in floors" :value="floor.id">{{ floor.name }} - {{ floor.building.name }}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2 col-md-3">
+                                        <div class="form-group">
+                                            <select v-model="filtering_form.machine_status" class="mr-2 form-select">
+                                                <option value="">Status</option>
+                                                <option v-for="machine_status in machine_statuses" :value="machine_status">{{ machine_status.charAt(0).toUpperCase()+machine_status.slice(1) }}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3">
+                                        <Link :href="route('machine.index')" class="btn btn-outline-warning">
+                                            Reset
+                                        </Link>
+                                        <button type="submit" class="ml-2 btn btn-outline-primary">Search</button>
                                     </div>
                                 </div>
-                                <div class="col-lg-2 col-md-3">
-                                    <div class="form-group">
-                                        <select v-model="filtering_form.category_id" class="mr-2 form-select">
-                                            <option value="">Select machine</option>
-                                            <option v-for="category in categories" :value="category.id">{{ category.name }}</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-lg-2 col-md-3">
-                                    <div class="form-group">
-                                        <select v-model="filtering_form.floor_id" class="mr-2 form-select">
-                                            <option value="">Select Floor</option>
-                                            <option v-for="floor in floors" :value="floor.id">{{ floor.name }} - {{ floor.building.name }}</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-lg-2 col-md-3">
-                                    <div class="form-group">
-                                        <select v-model="filtering_form.machine_status" class="mr-2 form-select">
-                                            <option value="">Status</option>
-                                            <option v-for="machine_status in machine_statuses" :value="machine_status">{{ machine_status.charAt(0).toUpperCase()+machine_status.slice(1) }}</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-md-3">
-                                    <Link :href="route('machine.index')" class="btn btn-outline-warning">
-                                        Reset
-                                    </Link>
-                                    <button type="submit" class="ml-2 btn btn-outline-primary">Search</button>
-                                </div>
-                            </div>
-                        </form>
+                            </form>
+                            <a :href="route('machine.export', {
+                            search: filtering_form.search,
+                            category_id: filtering_form.category_id,
+                            floor_id: filtering_form.floor_id,
+                            machine_status: filtering_form.machine_status
+                        })" class="btn ml-2 btn-outline-danger">Export</a>
+                        </div>
                         <table class="table">
                             <thead>
                             <tr>
@@ -216,7 +224,7 @@ const submitSearchForm = () => {
                             </thead>
                             <tbody>
                             <tr v-for="(machine, i) in machines.data">
-                                <td>{{ i+1 }}</td>
+                                <td>{{ machines.from+i }}</td>
                                 <td>
                                     {{ machine.category.name }}
                                 </td>
